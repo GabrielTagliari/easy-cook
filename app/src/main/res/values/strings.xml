@@ -4,4 +4,6 @@
     <string name="parse_server_url">https://parseapi.back4app.com/</string>
     <string name="parse_app_id">gXvxW0CWDXAbMXG4Jdu7kiy7s7RucTzQrq4CJ2Xh</string>
     <string name="parse_client_key">QGd4jNLVMsoib2XJptEk6rq7uNrSLhhoJEZBvGuy</string>
+
+    <string name="facebook_app_id">1557747544278181</string>
 </resources>

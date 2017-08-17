@@ -1,9 +1,9 @@
 package com.easycook.easycook;
 
 import android.app.Application;
-
 import com.parse.Parse;
 import com.parse.ParseACL;
+import com.parse.ParseFacebookUtils;
 
 /** Created by gabriel on 8/16/17. */
 public class StarterApplication extends Application {
@@ -14,10 +14,10 @@ public class StarterApplication extends Application {
 
         // Enable Local Datastore.
         Parse.enableLocalDatastore(this);
-
         // Add your initialization code here
         Parse.initialize(this);
 
+        ParseFacebookUtils.initialize(this);
         //ParseUser.enableAutomaticUser();
         ParseACL defaultACL = new ParseACL();
         // Optionally enable public read access.
