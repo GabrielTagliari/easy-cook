@@ -56,6 +56,7 @@ public class CompraFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.rv_compras);
 
