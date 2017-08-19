@@ -178,4 +178,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    public void loginEmail(View view) {
+    }
 }

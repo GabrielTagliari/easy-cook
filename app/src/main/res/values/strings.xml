@@ -7,7 +7,7 @@
 
     <string name="facebook_app_id">1557747544278181</string>
 
-    <string name="texto_botao_facebook">Entrar com o Facebook</string>
+    <string name="texto_botao_facebook">ENTRAR COM FACEBOOK</string>
 
     <string name="content_desc_logo">Logo EasyCook</string>
 
@@ -17,4 +17,6 @@
     <string name="criar_uma_conta">Criar uma conta</string>
 
     <string name="progress_carregando">Carregando…</string>
+    <string name="botao_sair">Sair</string>
+    <string name="entrar">Entrar</string>
 </resources>
