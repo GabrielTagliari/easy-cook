@@ -23,11 +23,6 @@ import com.parse.SignUpCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import static android.app.AlertDialog.THEME_HOLO_LIGHT;
-
 public class LoginActivity extends AppCompatActivity {
 
     private String TAG = "LoginActivity";
@@ -42,7 +37,11 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         progressDialog = new ProgressDialog(this, R.style.ProgressDialog);
-        progressDialog.setMessage(getString(R.string.progress_mensagem));
+        progressDialog.setMessage(getString(R.string.progress_carregando));
+
+        if (usuarioLogado()) {
+            abrirTelaPrincipal();
+        }
     }
 
     @Override
@@ -52,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void logInFacebook(View view) {
-        if (usuarioLogado()) {
+        if (!usuarioLogado()) {
 
             progressDialog.show();
 
@@ -82,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean usuarioLogado() {
-        return ParseUser.getCurrentUser() == null;
+        return ParseUser.getCurrentUser() != null;
     }
 
     public void getFacebookUserDetails(final boolean firstTime, final ParseUser user) {
