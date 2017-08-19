@@ -3,27 +3,27 @@ package com.easycook.easycook.model;
 /** Created by gabriel on 8/16/17. */
 public class Usuario {
 
-    private String primeiroNome;
-    private String segundoNome;
+    private String nome;
+    private String sobrenome;
     private String sexo;
     private String email;
 
     public Usuario() {}
 
-    public String getPrimeiroNome() {
-        return primeiroNome;
+    public String getNome() {
+        return nome;
     }
 
-    public void setPrimeiroNome(String primeiroNome) {
-        this.primeiroNome = primeiroNome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getSegundoNome() {
-        return segundoNome;
+    public String getSobrenome() {
+        return sobrenome;
     }
 
-    public void setSegundoNome(String segundoNome) {
-        this.segundoNome = segundoNome;
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
     }
 
     public String getSexo() {
@@ -43,6 +43,6 @@ public class Usuario {
     }
 
     public String getNomeCompleto() {
-        return primeiroNome + " " + segundoNome;
+        return nome + " " + sobrenome;
     }
 }

@@ -6,9 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.easycook.easycook.R;
 import com.easycook.easycook.model.Usuario;
+import com.easycook.easycook.util.ConstantsUsuario;
 import com.easycook.easycook.util.Permission;
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
@@ -92,8 +94,8 @@ public class LoginActivity extends AppCompatActivity {
                         try {
                             usuario.setSexo(object.getString("gender"));
                             usuario.setEmail(object.getString("email"));
-                            usuario.setPrimeiroNome(object.getString("first_name"));
-                            usuario.setSegundoNome(object.getString("last_name"));
+                            usuario.setNome(object.getString("first_name"));
+                            usuario.setSobrenome(object.getString("last_name"));
 
                             populaUsuario(user);
 
@@ -128,7 +130,7 @@ public class LoginActivity extends AppCompatActivity {
                                     }
                                 });
                             } else {
-                                user.saveInBackground();
+                                salvarUsuario(user);
 
                                 progressDialog.dismiss();
                                 abrirTelaPrincipal();
@@ -144,7 +146,7 @@ public class LoginActivity extends AppCompatActivity {
                                         if (ParseFacebookUtils.isLinked(user)) {
                                             Log.d(TAG, "Woohoo, user logged in with Facebook!");
 
-                                            user.saveInBackground();
+                                            salvarUsuario(user);
 
                                             progressDialog.dismiss();
                                             abrirTelaPrincipal();
@@ -152,7 +154,7 @@ public class LoginActivity extends AppCompatActivity {
                                     }
                                 });
                             } else {
-                                user.saveInBackground();
+                                salvarUsuario(user);
 
                                 progressDialog.dismiss();
                                 abrirTelaPrincipal();
@@ -167,10 +169,22 @@ public class LoginActivity extends AppCompatActivity {
         request.executeAsync();
     }
 
+    private void salvarUsuario(ParseUser user) {
+        user.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e != null) {
+                    Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
     private void populaUsuario(ParseUser user) {
         user.setEmail(usuario.getEmail());
-        user.put("primeiroNome", usuario.getPrimeiroNome());
-        user.put("segundoNome", usuario.getSegundoNome());
+        user.put(ConstantsUsuario.NOME, usuario.getNome());
+        user.put(ConstantsUsuario.SOBRENOME, usuario.getSobrenome());
+        user.put(ConstantsUsuario.SEXO, usuario.getSexo());
     }
 
     private void abrirTelaPrincipal() {

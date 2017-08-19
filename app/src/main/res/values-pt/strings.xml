@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">EasyCook</string>
 
@@ -21,7 +22,7 @@
     <string name="entrar">Entrar</string>
     <string name="hint_nome">Nome</string>
     <string name="hint_sobrenome">Sobrenome</string>
-    <string name="hint_confirmacao_senha">Confirme a senha</string>
+    <string name="hint_confirmacao_senha">Confirmar Senha</string>
     <string name="botao_cadastrar">Cadastrar</string>
     <string name="masculino">Masculino</string>
     <string name="feminino">Feminino</string>
