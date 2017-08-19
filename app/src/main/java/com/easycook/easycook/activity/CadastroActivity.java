@@ -15,6 +15,8 @@ import com.easycook.easycook.R;
 import com.easycook.easycook.util.ConstantsUsuario;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -28,6 +30,10 @@ public class CadastroActivity extends AppCompatActivity {
     @BindView(R.id.radioGroup) RadioGroup mSexoRadioGroup;
     @BindView(R.id.rb_feminino) RadioButton mRadioFeminino;
 
+    @BindView(R.id.til_nome) TextInputLayout mNomeLayout;
+    @BindView(R.id.til_sobrenome) TextInputLayout mSobrenomeLayout;
+    @BindView(R.id.til_email) TextInputLayout mEmailLayout;
+    @BindView(R.id.til_senha) TextInputLayout mSenhaLayout;
     @BindView(R.id.til_confirmacao_senha) TextInputLayout mConfirmacaoSenhaLayout;
 
     @BindView(R.id.toolbar) Toolbar toolbar;
@@ -63,12 +69,51 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     public void cadastrarUsuario(View view) {
+        if (validarCamposTela()) {
+            salvarUsuario();
+        }
+    }
+
+    private boolean validarCamposTela() {
+
+        boolean erroPreenchimento;
+
+        ArrayList<TextInputLayout> camposParaValidar = new ArrayList<>();
+        camposParaValidar.add(mNomeLayout);
+        camposParaValidar.add(mSobrenomeLayout);
+        camposParaValidar.add(mEmailLayout);
+        camposParaValidar.add(mSenhaLayout);
+        camposParaValidar.add(mConfirmacaoSenhaLayout);
+
+        for (TextInputLayout campo : camposParaValidar) {
+            if (campo.getEditText() != null) {
+                if (campo.getEditText().getText().toString().isEmpty()) {
+                    campo.setErrorEnabled(true);
+                    campo.setError(getString(R.string.campo_obrigatorio));
+                } else {
+                    campo.setError(null);
+                    campo.setErrorEnabled(false);
+                }
+            }
+        }
+
+        if (!isEmailValido(mEmail.getText().toString())) {
+            mEmailLayout.setErrorEnabled(true);
+            mEmailLayout.setError("Email inválido");
+        } else {
+            mEmailLayout.setError(null);
+            mEmailLayout.setErrorEnabled(false);
+        }
 
         validarConfirmacaoSenha();
 
-        if (isSexoSelecionado()) {
-            salvarUsuario();
-        }
+        erroPreenchimento = isSexoSelecionado();
+
+        return erroPreenchimento;
+    }
+
+    private boolean isEmailValido(CharSequence email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
     private void salvarUsuario() {
@@ -103,7 +148,7 @@ public class CadastroActivity extends AppCompatActivity {
         }
     }
 
-    public String getSexoSelecionado (){
+    private String getSexoSelecionado (){
         switch (mSexoRadioGroup.getCheckedRadioButtonId()) {
             case R.id.rb_masculino:
                 return String.valueOf(ConstantsUsuario.MASCULINO);

@@ -29,4 +29,5 @@
 
     <string name="validacao_senha">Passwords do not match</string>
     <string name="validacao_sexo">Pick a gender</string>
+    <string name="campo_obrigatorio">Required field</string>
 </resources>

@@ -28,4 +28,5 @@
 
     <string name="validacao_senha">Senhas são diferentes</string>
     <string name="validacao_sexo">Selecione um sexo</string>
+    <string name="campo_obrigatorio">Campo obrigatório</string>
 </resources>
