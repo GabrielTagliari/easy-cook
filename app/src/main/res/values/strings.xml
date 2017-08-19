@@ -19,4 +19,7 @@
     <string name="progress_carregando">Carregando…</string>
     <string name="botao_sair">Sair</string>
     <string name="entrar">Entrar</string>
+    <string name="hint_nome">Nome</string>
+    <string name="hint_sobrenome">Sobrenome</string>
+    <string name="hint_confirmacao_senha">Confirme a senha</string>
 </resources>

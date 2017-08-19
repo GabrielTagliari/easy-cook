@@ -181,4 +181,9 @@ public class LoginActivity extends AppCompatActivity {
 
     public void loginEmail(View view) {
     }
+
+    public void abrirTelaCadastro(View view) {
+        Intent intent = new Intent(LoginActivity.this, CadastroActivity.class);
+        startActivity(intent);
+    }
 }
