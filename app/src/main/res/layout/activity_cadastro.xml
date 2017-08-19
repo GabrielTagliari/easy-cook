@@ -70,7 +70,8 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_nome"
                     android:inputType="textCapWords"
-                    android:maxLines="1" />
+                    android:maxLines="1"
+                    android:maxLength="25"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -92,7 +93,8 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_sobrenome"
                     android:inputType="textCapWords"
-                    android:maxLines="1" />
+                    android:maxLines="1"
+                    android:maxLength="50" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -114,7 +116,8 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_email"
                     android:inputType="textEmailAddress"
-                    android:maxLines="1" />
+                    android:maxLines="1"
+                    android:maxLength="60" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -137,7 +140,8 @@
                     android:hint="@string/hint_senha"
                     android:inputType="textPassword"
                     android:maxLines="1"
-                    android:textColorHint="@color/secondary_text" />
+                    android:textColorHint="@color/secondary_text"
+                    android:maxLength="25" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -160,7 +164,8 @@
                     android:hint="@string/hint_confirmacao_senha"
                     android:inputType="textPassword"
                     android:maxLines="1"
-                    android:textColorHint="@color/secondary_text" />
+                    android:textColorHint="@color/secondary_text"
+                    android:maxLength="25" />
             </android.support.design.widget.TextInputLayout>
 
             <Button

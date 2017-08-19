@@ -15,7 +15,7 @@
     <string name="hint_email">Email</string>
     <string name="hint_senha">Senha</string>
 
-    <string name="criar_uma_conta">Criar uma conta</string>
+    <string name="criar_uma_conta">Não tem conta? <u>Cadastre-se!</u></string>
 
     <string name="progress_carregando">Carregando…</string>
     <string name="botao_sair">Sair</string>
@@ -30,4 +30,7 @@
     <string name="validacao_senha">Senhas são diferentes</string>
     <string name="validacao_sexo">Selecione um sexo</string>
     <string name="campo_obrigatorio">Campo obrigatório</string>
+    <string name="email_invalido">E-mail inválido</string>
+
+    <string name="usuario_senha_invalido">Usuário e/ou senha inválido(s)</string>
 </resources>

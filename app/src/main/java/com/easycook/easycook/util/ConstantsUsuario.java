@@ -5,7 +5,9 @@ public class ConstantsUsuario {
     public static final String NOME = "firstName";
     public static final String SOBRENOME = "lastName";
     public static final String SEXO = "gender";
+    public static final String EMAIL = "email";
 
     public static final String MASCULINO = "masculino";
     public static final String FEMININO = "feminino";
+
 }
