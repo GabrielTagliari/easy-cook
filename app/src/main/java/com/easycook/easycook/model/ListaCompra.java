@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class ListaCompra extends ParseObject {
 
     private String titulo;
+    private String usuario;
 
     private int quantidadeTotal;
     private int quantidadeComprada;
@@ -38,5 +39,13 @@ public class ListaCompra extends ParseObject {
 
     public void setQuantidadeComprada(int quantidadeComprada) {
         this.quantidadeComprada = quantidadeComprada;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 }

@@ -33,4 +33,6 @@
     <string name="email_invalido">Invalid email address</string>
 
     <string name="usuario_senha_invalido">Invalid username/password</string>
+
+    <string name="listas_compras">Grocery lists</string>
 </resources>

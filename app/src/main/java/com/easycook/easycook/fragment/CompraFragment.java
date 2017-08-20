@@ -3,9 +3,7 @@ package com.easycook.easycook.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,9 +20,12 @@ import com.easycook.easycook.R;
 import com.easycook.easycook.adapter.CompraRecyclerViewAdapter;
 import com.easycook.easycook.decoration.SimpleDividerItemDecoration;
 import com.easycook.easycook.model.ListaCompra;
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseRelation;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.util.ArrayList;
@@ -48,7 +49,10 @@ public class CompraFragment extends Fragment {
 
     private List<ListaCompra> listasCompras = new ArrayList<>();
 
+    private ParseQuery<ParseObject> query;
+
     @BindView(R.id.toolbar_compra) Toolbar toolbar;
+    private CompraRecyclerViewAdapter adapter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -72,20 +76,9 @@ public class CompraFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Listas de compras");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.listas_compras);
 
-        ListaCompra listaTeste = new ListaCompra();
-        listaTeste.setTitulo("Churrasco");
-        listaTeste.setQuantidadeTotal(10);
-        listaTeste.setQuantidadeComprada(1);
-
-        ListaCompra listaTeste2 = new ListaCompra();
-        listaTeste2.setTitulo("Familia");
-        listaTeste2.setQuantidadeTotal(5);
-        listaTeste2.setQuantidadeComprada(4);
-
-        listasCompras.add(listaTeste);
-        listasCompras.add(listaTeste2);
+        //populaListaTeste();
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.rv_compras);
 
@@ -98,10 +91,65 @@ public class CompraFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new CompraRecyclerViewAdapter(listasCompras, mListener));
+            adapter = new CompraRecyclerViewAdapter(listasCompras, mListener);
+            recyclerView.setAdapter(adapter);
         }
+
+        getListasCompras();
+
         return view;
     }
+
+    public List<ListaCompra> getListasCompras() {
+
+        query = ParseQuery.getQuery("ListaCompra");
+        query.whereEqualTo("usuario", ParseUser.getCurrentUser().getObjectId());
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+
+                if (e == null) {
+
+                    if (objects.size() > 0) {
+                        listasCompras.clear();
+
+                        for (ParseObject parseObject : objects) {
+                            ListaCompra listaCompra = new ListaCompra();
+                            listaCompra.setTitulo(parseObject.getString("titulo"));
+                            listaCompra.setUsuario(parseObject.getString("usuario"));
+                            listaCompra.setQuantidadeComprada(0);
+                            listaCompra.setQuantidadeTotal(10);
+
+                            listasCompras.add(listaCompra);
+                        }
+
+                        adapter.notifyDataSetChanged();
+                    }
+
+                } else {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
+        return listasCompras;
+    }
+
+    /*private void populaListaTeste() {
+        ListaCompra listaTeste = new ListaCompra();
+        listaTeste.setTitulo("Churrasco");
+        listaTeste.setQuantidadeTotal(10);
+        listaTeste.setQuantidadeComprada(1);
+
+        ListaCompra listaTeste2 = new ListaCompra();
+        listaTeste2.setTitulo("Familia");
+        listaTeste2.setQuantidadeTotal(5);
+        listaTeste2.setQuantidadeComprada(4);
+
+        listasCompras.add(listaTeste);
+        listasCompras.add(listaTeste2);
+    }*/
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -128,9 +176,11 @@ public class CompraFragment extends Fragment {
     private void MockSalvar() {
         ListaCompra lista = new ListaCompra();
         lista.setTitulo("Churrasco");
+        lista.put("usuario", ParseUser.getCurrentUser().getObjectId());
 
         final ParseObject listaCompra = ParseObject.create("ListaCompra");
         listaCompra.put("titulo", lista.getTitulo());
+        listaCompra.put("usuario", ParseUser.getCurrentUser().getObjectId());
 
         final ParseObject parseProduto1 = ParseObject.create("Produto");
         parseProduto1.put("nome", "Morango");

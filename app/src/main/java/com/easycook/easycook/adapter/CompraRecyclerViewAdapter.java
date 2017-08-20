@@ -1,6 +1,5 @@
 package com.easycook.easycook.adapter;
 
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,11 +40,7 @@ public class CompraRecyclerViewAdapter extends RecyclerView.Adapter<CompraRecycl
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mLista.get(position);
-        ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
-        int color = generator.getRandomColor();
-        TextDrawable drawable = TextDrawable.builder()
-                .buildRound(mLista.get(position).getTitulo().substring(0,1), color);
-        holder.mImageView.setImageDrawable(drawable);
+        holder.mImageView.setImageDrawable(getDrawableImagem(position));
         holder.mTituloView.setText(mLista.get(position).getTitulo());
         holder.mDescricaoView.setText(
                 mLista.get(position).getQuantidadeComprada()
@@ -65,19 +60,26 @@ public class CompraRecyclerViewAdapter extends RecyclerView.Adapter<CompraRecycl
         });
     }
 
+    private TextDrawable getDrawableImagem(int position) {
+        ColorGenerator generator = ColorGenerator.MATERIAL;
+        int color = generator.getRandomColor();
+        return TextDrawable.builder()
+                .buildRound(mLista.get(position).getTitulo().substring(0,1), color);
+    }
+
     @Override
     public int getItemCount() {
         return mLista.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
-        public final ImageView mImageView;
-        public final TextView mTituloView;
-        public final TextView mDescricaoView;
-        public ListaCompra mItem;
+    class ViewHolder extends RecyclerView.ViewHolder {
+        final View mView;
+        final ImageView mImageView;
+        final TextView mTituloView;
+        final TextView mDescricaoView;
+        ListaCompra mItem;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             mView = view;
             mImageView = (ImageView) view.findViewById(R.id.imagem);
