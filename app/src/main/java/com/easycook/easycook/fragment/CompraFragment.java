@@ -61,7 +61,7 @@ public class CompraFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.rv_compras);
 
         // Set the adapter
-        if (recyclerView instanceof RecyclerView) {
+        if (recyclerView != null) {
             Context context = view.getContext();
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));

@@ -66,7 +66,7 @@ public class CadastroActivity extends AppCompatActivity {
 
     private void criarToolbar() {
         toolbar.setTitle(R.string.botao_cadastrar);
-        toolbar.setTitleTextColor(getResources().getColor(R.color.primary_text));
+        toolbar.setTitleTextColor(getResources().getColor(R.color.icons));
         setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null) {

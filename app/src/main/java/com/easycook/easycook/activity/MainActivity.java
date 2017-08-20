@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.easycook.easycook.R;
@@ -21,7 +20,6 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity
         implements CompraFragment.OnListFragmentInteractionListener {
 
-    //@BindView(R.id.toolbar_logo) Toolbar toolbarPrincipal;
     @BindView(R.id.view_pager_main) ViewPager viewPager;
     @BindView(R.id.sliding_tab_main) SlidingTabLayout slidingTabLayout;
 
@@ -31,8 +29,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
-
-        //setSupportActionBar(toolbarPrincipal);
 
         TabsAdapter tabsAdapter = new TabsAdapter(getSupportFragmentManager(), this);
         viewPager.setAdapter(tabsAdapter);
