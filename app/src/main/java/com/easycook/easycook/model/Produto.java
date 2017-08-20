@@ -1,14 +1,18 @@
 package com.easycook.easycook.model;
 
+import com.parse.ParseClassName;
+import com.parse.ParseObject;
+
 /** Created by gabriel on 8/19/17. */
-class ItemListaCompra {
+@ParseClassName("Produto")
+public class Produto extends ParseObject {
 
     private String nome;
     private String categoria;
     private Double preco;
     private boolean comprado;
 
-    public ItemListaCompra() {}
+    public Produto() {}
 
     public String getNome() {
         return nome;

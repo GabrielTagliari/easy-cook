@@ -1,12 +1,18 @@
 package com.easycook.easycook.model;
 
+import com.parse.ParseClassName;
+import com.parse.ParseObject;
+
 import java.util.ArrayList;
 
 /** Created by gabriel on 8/19/17. */
-public class ListaCompra {
+@ParseClassName("ListaCompra")
+public class ListaCompra extends ParseObject {
 
     private String titulo;
-    private ArrayList<ItemListaCompra> itens;
+
+    private int quantidadeTotal;
+    private int quantidadeComprada;
 
     public ListaCompra() {}
 
@@ -18,26 +24,19 @@ public class ListaCompra {
         this.titulo = titulo;
     }
 
-    public ArrayList<ItemListaCompra> getItens() {
-        return itens;
+    public int getQuantidadeTotal() {
+        return quantidadeTotal;
     }
 
-    public void setItens(ArrayList<ItemListaCompra> itens) {
-        this.itens = itens;
+    public void setQuantidadeTotal(int quantidadeTotal) {
+        this.quantidadeTotal = quantidadeTotal;
     }
 
-    public int getQuantidadeItens() {
-        return this.itens.size();
+    public int getQuantidadeComprada() {
+        return quantidadeComprada;
     }
 
-    public int getQuantidadeItensComprados() {
-        int quantidade = 0;
-
-        for (ItemListaCompra item : itens) {
-            if (item.isComprado()){
-                quantidade++;
-            }
-        }
-        return quantidade;
+    public void setQuantidadeComprada(int quantidadeComprada) {
+        this.quantidadeComprada = quantidadeComprada;
     }
 }

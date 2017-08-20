@@ -1,9 +1,13 @@
 package com.easycook.easycook;
 
 import android.app.Application;
+
+import com.easycook.easycook.model.ListaCompra;
+import com.easycook.easycook.model.Produto;
 import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseFacebookUtils;
+import com.parse.ParseObject;
 
 /** Created by gabriel on 8/16/17. */
 public class StarterApplication extends Application {
@@ -14,6 +18,10 @@ public class StarterApplication extends Application {
 
         // Enable Local Datastore.
         Parse.enableLocalDatastore(this);
+
+        ParseObject.registerSubclass(Produto.class);
+        ParseObject.registerSubclass(ListaCompra.class);
+
         // Add your initialization code here
         Parse.initialize(this);
 

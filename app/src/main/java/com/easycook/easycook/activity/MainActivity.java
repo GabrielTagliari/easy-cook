@@ -10,7 +10,7 @@ import android.view.View;
 import com.easycook.easycook.R;
 import com.easycook.easycook.adapter.TabsAdapter;
 import com.easycook.easycook.fragment.CompraFragment;
-import com.easycook.easycook.fragment.dummy.DummyContent;
+import com.easycook.easycook.model.ListaCompra;
 import com.easycook.easycook.util.SlidingTabLayout;
 import com.parse.ParseUser;
 
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity
 
         TabsAdapter tabsAdapter = new TabsAdapter(getSupportFragmentManager(), this);
         viewPager.setAdapter(tabsAdapter);
+
         slidingTabLayout.setCustomTabView(R.layout.tab_view, R.id.tv_item_tab);
         slidingTabLayout.setDistributeEvenly(true);
         slidingTabLayout.setSelectedIndicatorColors(ContextCompat.getColor(this, R.color.accent));
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+    public void onListFragmentInteraction(ListaCompra item) {
 
     }
 }
