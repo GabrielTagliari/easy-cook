@@ -52,6 +52,8 @@ public class CompraFragment extends Fragment {
     private ParseQuery<ParseObject> query;
 
     @BindView(R.id.toolbar_compra) Toolbar toolbar;
+    @BindView(R.id.rv_compras) RecyclerView recyclerView;
+
     private CompraRecyclerViewAdapter adapter;
 
     /**
@@ -80,8 +82,6 @@ public class CompraFragment extends Fragment {
 
         //populaListaTeste();
 
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.rv_compras);
-
         // Set the adapter
         if (recyclerView != null) {
             Context context = view.getContext();
@@ -101,7 +101,6 @@ public class CompraFragment extends Fragment {
     }
 
     public List<ListaCompra> getListasCompras() {
-
         query = ParseQuery.getQuery("ListaCompra");
         query.whereEqualTo("usuario", ParseUser.getCurrentUser().getObjectId());
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -123,7 +122,9 @@ public class CompraFragment extends Fragment {
                             listasCompras.add(listaCompra);
                         }
 
-                        adapter.notifyDataSetChanged();
+                        //adapter.notifyDataSetChanged();
+
+                        recyclerView.swapAdapter(adapter, false);
                     }
 
                 } else {
@@ -214,6 +215,7 @@ public class CompraFragment extends Fragment {
                                     public void done(ParseException e) {
                                         if (e == null) {
                                             Toast.makeText(getActivity(), "Sucesso ao salvar", Toast.LENGTH_SHORT).show();
+                                            recyclerView.swapAdapter(adapter, false);
                                         } else {
                                             Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                                         }
