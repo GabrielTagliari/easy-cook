@@ -215,7 +215,7 @@ public class CompraFragment extends Fragment {
                                     public void done(ParseException e) {
                                         if (e == null) {
                                             Toast.makeText(getActivity(), "Sucesso ao salvar", Toast.LENGTH_SHORT).show();
-                                            recyclerView.swapAdapter(adapter, false);
+                                            getListasCompras();
                                         } else {
                                             Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                                         }
