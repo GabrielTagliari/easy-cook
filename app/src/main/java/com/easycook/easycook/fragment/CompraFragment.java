@@ -163,14 +163,43 @@ public class CompraFragment extends Fragment {
 
         switch (item.getItemId()) {
             case R.id.action_add_lista:
-                abreTelaAdicionarLista();
+                abrirTelaAdicionarLista();
+                return true;
+            case R.id.action_remove_lista:
+                removerTodasListas();
                 return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    private void abreTelaAdicionarLista() {
+    private void removerTodasListas() {
+        query = ParseQuery.getQuery("ListaCompra");
+        query.whereEqualTo("usuario", ParseUser.getCurrentUser().getObjectId());
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (e == null) {
+
+                    if (objects.size() > 0) {
+                        listasCompras.clear();
+
+                        for (ParseObject parseObject : objects) {
+                            parseObject.deleteEventually();
+                        }
+
+                        getListasCompras();
+
+                    }
+
+                } else {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private void abrirTelaAdicionarLista() {
         MockSalvar();
     }
 

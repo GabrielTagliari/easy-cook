@@ -10,4 +10,10 @@
         android:orderInCategory="200"
         app:showAsAction="ifRoom"/>
 
+    <item android:id="@+id/action_remove_lista"
+        android:title="@string/add_lista"
+        android:icon="@drawable/ic_delete_white_24dp"
+        android:orderInCategory="200"
+        app:showAsAction="ifRoom"/>
+
 </menu>
