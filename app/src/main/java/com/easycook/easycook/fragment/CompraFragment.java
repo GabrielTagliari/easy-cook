@@ -2,6 +2,7 @@ package com.easycook.easycook.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.easycook.easycook.R;
@@ -52,6 +54,8 @@ public class CompraFragment extends Fragment {
 
     @BindView(R.id.toolbar_compra) Toolbar toolbar;
     @BindView(R.id.rv_compras) RecyclerView recyclerView;
+    @BindView(R.id.progress_spinner) ProgressBar spinner;
+    @BindView(R.id.fundo_spinner) ConstraintLayout fundoSpinner;
 
     public CompraFragment() {
     }
@@ -86,6 +90,10 @@ public class CompraFragment extends Fragment {
     }
 
     public List<ListaCompra> getListasCompras() {
+
+        spinner.setVisibility(View.VISIBLE);
+        fundoSpinner.setVisibility(View.VISIBLE);
+
         query = ParseQuery.getQuery(LISTA_COMPRA);
         query.whereEqualTo(ConstantsUsuario.USUARIO, ParseUser.getCurrentUser().getObjectId());
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -106,6 +114,9 @@ public class CompraFragment extends Fragment {
                         }
 
                         recyclerView.swapAdapter(adapter, false);
+
+                        spinner.setVisibility(View.GONE);
+                        fundoSpinner.setVisibility(View.GONE);
                     }
                 } else {
                     e.printStackTrace();
@@ -152,7 +163,25 @@ public class CompraFragment extends Fragment {
     }
 
     private void abrirTelaAdicionarLista() {
-        MockSalvar();
+        salvarListaCompraMock();
+    }
+
+    private void salvarListaCompraMock() {
+        final ParseObject listaCompra = ParseObject.create("ListaCompra");
+        listaCompra.put("titulo", "Churrasco");
+        listaCompra.put(ConstantsUsuario.USUARIO, ParseUser.getCurrentUser().getObjectId());
+
+        listaCompra.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e == null) {
+                    Toast.makeText(getActivity(), "Salvo com sucesso", Toast.LENGTH_SHORT).show();
+                    getListasCompras();
+                } else {
+                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void MockSalvar() {

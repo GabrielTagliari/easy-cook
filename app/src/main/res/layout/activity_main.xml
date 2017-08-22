@@ -12,26 +12,29 @@
         android:id="@+id/view_pager_main"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
         android:layout_weight="1"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="0dp"
         android:layout_marginBottom="0dp"
-        android:layout_marginStart="0dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/sliding_tab_main"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.easycook.easycook.util.SlidingTabLayout
         android:id="@+id/sliding_tab_main"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:layout_marginStart="0dp"
         android:background="@color/icons"
         android:elevation="10dp"
-        tools:targetApi="lollipop"
-        tools:layout_editor_absoluteY="455dp"
-        android:layout_marginStart="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        tools:targetApi="lollipop"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginBottom="-1dp" />
 </android.support.constraint.ConstraintLayout>
