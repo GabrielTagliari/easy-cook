@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="0dp"
-        android:layout_marginLeft="0dp"
+        android:layout_marginStart="0dp"
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <com.easycook.easycook.util.SlidingTabLayout
