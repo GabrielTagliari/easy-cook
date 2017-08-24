@@ -1,6 +1,7 @@
 package com.easycook.easycook.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.easycook.easycook.R;
+import com.easycook.easycook.activity.ListaCompraActivity;
 import com.easycook.easycook.adapter.CompraRecyclerViewAdapter;
 import com.easycook.easycook.decoration.SimpleDividerItemDecoration;
 import com.easycook.easycook.model.ListaCompra;
@@ -163,7 +165,8 @@ public class CompraFragment extends Fragment {
     }
 
     private void abrirTelaAdicionarLista() {
-        salvarListaCompraMock();
+        Intent intent = new Intent(getActivity(), ListaCompraActivity.class);
+        startActivity(intent);
     }
 
     private void salvarListaCompraMock() {

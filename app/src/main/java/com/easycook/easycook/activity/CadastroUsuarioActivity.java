@@ -15,12 +15,10 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.easycook.easycook.R;
-import com.easycook.easycook.model.Usuario;
 import com.easycook.easycook.util.ConstantsUsuario;
 import com.easycook.easycook.validator.ValidatorFields;
 import com.parse.ParseException;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 
 import java.util.ArrayList;
@@ -28,7 +26,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CadastroActivity extends AppCompatActivity {
+public class CadastroUsuarioActivity extends AppCompatActivity {
 
     @BindView(R.id.tiet_nome) TextInputEditText mNome;
     @BindView(R.id.tiet_sobrenome) TextInputEditText mSobrenome;
@@ -126,7 +124,7 @@ public class CadastroActivity extends AppCompatActivity {
                     abrirTelaPrincipal();
                 } else {
                     progressDialog.dismiss();
-                    Toast.makeText(CadastroActivity.this,
+                    Toast.makeText(CadastroUsuarioActivity.this,
                             e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
@@ -156,7 +154,7 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     private void abrirTelaPrincipal() {
-        Intent intent = new Intent(CadastroActivity.this, MainActivity.class);
+        Intent intent = new Intent(CadastroUsuarioActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
     }

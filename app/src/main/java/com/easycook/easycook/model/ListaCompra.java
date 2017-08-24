@@ -15,7 +15,11 @@ public class ListaCompra extends ParseObject {
     private int quantidadeTotal;
     private int quantidadeComprada;
 
-    public ListaCompra() {}
+    private ArrayList<Produto> itens;
+
+    public ListaCompra() {
+        this.itens = new ArrayList<>();
+    }
 
     public String getTitulo() {
         return titulo;
@@ -47,5 +51,13 @@ public class ListaCompra extends ParseObject {
 
     public void setUsuario(String usuario) {
         this.usuario = usuario;
+    }
+
+    public ArrayList<Produto> getItens() {
+        return itens;
+    }
+
+    public void setItens(ArrayList<Produto> itens) {
+        this.itens = itens;
     }
 }

@@ -82,7 +82,7 @@ public class CompraRecyclerViewAdapter extends RecyclerView.Adapter<CompraRecycl
         ViewHolder(View view) {
             super(view);
             mView = view;
-            mImageView = (ImageView) view.findViewById(R.id.imagem);
+            mImageView = (ImageView) view.findViewById(R.id.img_lista_compra);
             mTituloView = (TextView) view.findViewById(R.id.titulo);
             mDescricaoView = (TextView) view.findViewById(R.id.descricao);
         }

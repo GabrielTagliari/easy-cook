@@ -39,9 +39,11 @@
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
             android:theme="@style/FullyTranslucent" />
-        <activity android:name=".activity.MainActivity"
+        <activity
+            android:name=".activity.MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
-        <activity android:name=".activity.CadastroActivity" />
+        <activity android:name=".activity.CadastroUsuarioActivity" />
+        <activity android:name=".activity.ListaCompraActivity"></activity>
     </application>
 
 </manifest>

@@ -36,4 +36,5 @@
     <string name="perfil">Perfil</string>
     <string name="add_lista">Adicionar Lista</string>
     <string name="listas_compras">Listas de compras</string>
+    <string name="titulo_lista">Título da lista</string>
 </resources>
